@@ -1,0 +1,54 @@
+---
+title: "classification_lab"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ISLR)
+```
+
+# Examining stock market data
+
+```{r}
+names(Smarket)
+```
+
+```{r}
+dim(Smarket)
+```
+
+```{r}
+summary(Smarket)
+```
+
+```{r}
+## avoid Direction column because it is qualitative
+cor(Smarket[, -9])
+```
+
+```{r}
+plot(Smarket$Volume)
+```
+
+```{r}
+glm.fit = glm(Smarket$Direction ~ Smarket$Lag1 + Smarket$Lag2 + Smarket$Lag2 + Smarket$Lag4 + Smarket$Lag5 + Volume, data = Smarket, family = binomial)
+```
+
+```{r}
+summary(glm.fit)
+```
+
+```{r}
+coef(glm.fit)
+```
+
+
+```{r}
+summary(glm.fit)$coef
+```
+
+```{r}
+summary(glm.fit)$coef[,4]
+```
+
